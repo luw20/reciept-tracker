@@ -11,11 +11,12 @@ class Scanner:
          pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
          
          # Initialize the video capture
-         cap = cv2.VideoCapture(0)  # 0 for the default camera
+         cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # 0 for the default camera
          cap.set(3, 640)
          cap.set(4, 480)
          
          try:
+             print("Starting capture. Press 'q' to exit.")
              while True:
                  # Read a frame from the camera
                  ret, frame = cap.read()
@@ -36,11 +37,10 @@ class Scanner:
                          
                  # Display the frame and the recognized text
                  cv2.imshow('Camera', frame)
-                 print("Capturing...")
                  print(self.text)
                  
                  # Exit if 'q' is pressed
-                 if cv2.waitKey(1) & 0xFF == ord('q'):
+                 if cv2.waitKey(0) & 0xFF == ord('q'):
                      print("Exiting...")
                      break
          except KeyboardInterrupt:
