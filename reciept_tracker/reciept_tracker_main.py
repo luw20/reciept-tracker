@@ -1,8 +1,10 @@
 import sys
+import scanner
 
 # Defining main function
 def main():
-    print(sys.path)
+    s = scanner.Scanner()
+    s.getCapturedText()
 
 
 # Using the special variable 
