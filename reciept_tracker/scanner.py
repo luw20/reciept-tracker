@@ -40,7 +40,7 @@ class Scanner:
                  print(self.text)
                  
                  # Exit if 'q' is pressed
-                 if cv2.waitKey(0) & 0xFF == ord('q'):
+                 if cv2.waitKey(1) & 0xFF == ord('q'):
                      print("Exiting...")
                      break
          except KeyboardInterrupt:
