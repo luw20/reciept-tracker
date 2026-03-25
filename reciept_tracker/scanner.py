@@ -24,6 +24,12 @@ class Scanner:
                      print("Failed to capture frame. Exiting...")
                      break
                  
+                 # Restrict capture area to region of interest: (x=100, y=100, width=300, height=300)
+                 frame = frame[100:400, 100:400]
+
+                 # Convert the frame to grayscale
+                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                 
                  # Perform OCR on the frame
                  self.text = pytesseract.image_to_string(frame)
                  
