@@ -1,0 +1,18 @@
+import pytest
+import datetime
+import reciepttracker.reciept_tracker.data_extractor as data_extractor
+from unittest.mock import patch
+
+@pytest.fixture
+def initialize_data_extractor():
+    d = data_extractor.DataExtractor
+    return d
+    
+
+def test_can_extract_date(initialize_data_extractor):
+    text = "here is a date 11/12/1995"
+    d = initialize_data_extractor()
+    date = d.extractDate(text)
+    print(date)
+    assert isinstance(date, datetime.date)
+

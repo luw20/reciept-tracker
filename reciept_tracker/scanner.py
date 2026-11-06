@@ -1,10 +1,13 @@
 # Import required packages
 import cv2
 import pytesseract
+import reciepttracker.reciept_tracker.data_extractor as data_extractor
+
 
 class Scanner:
     def __init__(self, text = ""):
          self.text = text
+
 
     def captureTextFromVideo(self):    
          # Mention the installed location of Tesseract-OCR in your system
@@ -44,6 +47,10 @@ class Scanner:
                  # Display the frame and the recognized text
                  cv2.imshow('Camera', frame)
                  print(self.text)
+
+                 # Extract the date from the text
+                 extractor = data_extractor.DataExtractor
+                 extractor.extractDate(self.text)
                  
                  # Exit if 'q' is pressed
                  if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -55,12 +62,13 @@ class Scanner:
              # Release the video capture and close the window
              cap.release()
              cv2.destroyAllWindows()
-         return self.text    
+         return
 
     
     def getCapturedText(self, captured_text = ""):
         captured_text = self.captureTextFromVideo()
         return captured_text
+
 
 
 
