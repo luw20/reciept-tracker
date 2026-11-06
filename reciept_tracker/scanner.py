@@ -1,8 +1,7 @@
 # Import required packages
 import cv2
 import pytesseract
-import reciepttracker.reciept_tracker.data_extractor as data_extractor
-
+import data_extractor
 
 class Scanner:
     def __init__(self, text = ""):
@@ -48,7 +47,6 @@ class Scanner:
                  cv2.imshow('Camera', frame)
                  print(self.text)
 
-                 # Extract the date from the text
                  extractor = data_extractor.DataExtractor
                  extractor.extractDate(self.text)
                  
