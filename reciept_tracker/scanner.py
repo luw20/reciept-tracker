@@ -8,10 +8,12 @@ class Scanner:
          self.text = text
 
 
-    def captureTextFromVideo(self):    
+    def captureTextFromVideo(self):   
          # Mention the installed location of Tesseract-OCR in your system
          pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-         
+
+         total_text = []
+
          # Initialize the video capture
          cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # 0 for the default camera
          cap.set(3, 640)
@@ -34,6 +36,7 @@ class Scanner:
                  
                  # Perform OCR on the frame
                  self.text = pytesseract.image_to_string(frame)
+                 text_output = self.text
                  
                  # Perform bounding box detection using Tesseract's built-in capabilities
                  d = pytesseract.image_to_data(frame, output_type=pytesseract.Output.DICT)
@@ -45,11 +48,12 @@ class Scanner:
                          
                  # Display the frame and the recognized text
                  cv2.imshow('Camera', frame)
-                 print(self.text)
-
-                 extractor = data_extractor.DataExtractor
-                 extractor.extractDate(self.text)
                  
+                 #Get text from all frames
+                 for text in frame:
+                     total_text.append(text_output)
+                 #print("Current text is:"  +text_output)
+
                  # Exit if 'q' is pressed
                  if cv2.waitKey(1) & 0xFF == ord('q'):
                      print("Exiting...")
@@ -57,15 +61,27 @@ class Scanner:
          except KeyboardInterrupt:
              print("KeyboardInterrupt detected. Exiting gracefully...")
          finally:
+             captured_text_str = " ".join(total_text)
+             #print("All text is: " + captured_text_str)
              # Release the video capture and close the window
              cap.release()
              cv2.destroyAllWindows()
-         return
-
+         return total_text
     
     def getCapturedText(self, captured_text = ""):
         captured_text = self.captureTextFromVideo()
+        captured_text_str = " ".join(captured_text)
+        print("Raw text is: " + captured_text_str)
         return captured_text
+
+    def getDate(self, date = None):
+        text = self.getCapturedText()
+
+        extractor = data_extractor.DataExtractor
+        date = extractor.extractDate(text)
+        print("extracted date is:" + date)
+        return date
+
 
 
 
