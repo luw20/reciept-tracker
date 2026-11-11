@@ -10,11 +10,13 @@ def initialize_data_extractor():
     
 
 def test_can_extract_date(initialize_data_extractor):
-    text = "here is a date 11/12/1995"
+    text = "here is a date 11/13/1996"
     d = initialize_data_extractor()
     date = d.extractDate(text)
     print(date)
-    assert isinstance(date, datetime.datetime)
+
+    date_obj = datetime.datetime.strptime(date, "%m/%d/%Y")
+    assert isinstance(date_obj, datetime.datetime)
 
 if __name__ == '__main__':
     pytest.main()    

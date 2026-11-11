@@ -1,6 +1,5 @@
 import scanner
 import data_extractor
-import datetime
 
 def main():
     s = scanner.Scanner()
@@ -8,11 +7,11 @@ def main():
     #print("Text is " + text)
     
     d = data_extractor.DataExtractor()
-    date = d.extractDate("string is 11/12/1996")
+    date = d.extractDate(text)
 
     if date:
-        extracted_date_str = date.strftime("%d/%m/%Y")
-        print("extracted date is:" + extracted_date_str)
+        print(date)
+
     else:
         print("No date")
         return    

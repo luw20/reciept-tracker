@@ -6,20 +6,16 @@ class DataExtractor:
          self.data = data
 
 
-    def extractDate(self, text:str) -> datetime:
-        date_obj = None
-        if date := re.search(r"(([1-2][0-9])|([1-9])|(3[0-1]))/((1[0-2])|([1-9]))/[0-9]{4}", text):
-           #TODO: if date is in dd/mm/yyyy form, you need to first switch it to
-           # mm/dd/yyyy form
+    def extractDate(self, text:str) -> str:
+        
+        if date := re.search(r"(\d{2}[\/-]\d{2}[\/-]\d{4}|\d{4}[\/-]\d{2}[\/-]\d{2})", text):
 
            #Convert regex obj to string
            date_str = date.group()    
-           #Convert the string you found to datetime object
-           date_obj=datetime.datetime.strptime(date_str, "%d/%m/%Y")
         else:
              print("Could not retrieve date")
              return   
-        return date_obj
+        return date_str
 
     def extractCreditCardNum(self, text:str) -> datetime:
             date_obj = None
