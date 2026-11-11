@@ -52,7 +52,6 @@ class Scanner:
                  #Get text from all frames
                  for text in frame:
                      total_text.append(text_output)
-                 #print("Current text is:"  +text_output)
 
                  # Exit if 'q' is pressed
                  if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -61,8 +60,6 @@ class Scanner:
          except KeyboardInterrupt:
              print("KeyboardInterrupt detected. Exiting gracefully...")
          finally:
-             captured_text_str = " ".join(total_text)
-             #print("All text is: " + captured_text_str)
              # Release the video capture and close the window
              cap.release()
              cv2.destroyAllWindows()
@@ -70,14 +67,16 @@ class Scanner:
     
     def getCapturedText(self, captured_text = ""):
         captured_text = self.captureTextFromVideo()
-        captured_text_str = " ".join(captured_text)
-        print("Raw text is: " + captured_text_str)
-        return captured_text
 
-    def getDate(self, date = None):
+        #Convert list of captured text to one big string
+        captured_text_str = " ".join(captured_text)
+        return captured_text_str
+
+    def getDate(self):
         text = self.getCapturedText()
 
-        extractor = data_extractor.DataExtractor
+        print("Raw text is: " + text)
+        extractor = data_extractor.DataExtractor()
         date = extractor.extractDate(text)
         print("extracted date is:" + date)
         return date

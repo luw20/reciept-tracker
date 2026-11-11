@@ -14,7 +14,7 @@ def test_can_extract_date(initialize_data_extractor):
     d = initialize_data_extractor()
     date = d.extractDate(text)
     print(date)
-    assert isinstance(date, datetime.date)
+    assert isinstance(date, datetime.datetime)
 
 if __name__ == '__main__':
     pytest.main()    
