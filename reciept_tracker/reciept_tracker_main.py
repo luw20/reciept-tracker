@@ -4,7 +4,7 @@ import data_extractor
 def main():
     s = scanner.Scanner()
     text = s.getCapturedText()
-    #print("Text is " + text)
+    print("Text is " + text)
     
     d = data_extractor.DataExtractor()
     date = d.extractDate(text)
@@ -13,7 +13,7 @@ def main():
         print(date)
 
     else:
-        print("No date")
+        print("Could not capture date")
         return    
     return
 

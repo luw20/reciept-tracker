@@ -7,15 +7,21 @@ class DataExtractor:
 
 
     def extractDate(self, text:str) -> str:
-        
-        if date := re.search(r"(\d{2}[\/-]\d{2}[\/-]\d{4}|\d{4}[\/-]\d{2}[\/-]\d{2})", text):
-
-           #Convert regex obj to string
-           date_str = date.group()    
-        else:
-             print("Could not retrieve date")
-             return   
-        return date_str
+        date_str =""
+        if two_digit_date := re.search(r"(\d{2})\/(\d{2})\/(\d{2})", text):
+           
+           if four_digit_date := re.search(r"(\d{2}[\/-]\d{2}[\/-]\d{4}|\d{4}[\/-]\d{2}[\/-]\d{2})", text):
+              date_str = four_digit_date.group()
+              print(date_str)
+              return date_str  
+           
+           else:
+             date_str = two_digit_date.group()
+             print(date_str)
+             return date_str
+             
+        else: print("Could not retrieve date")
+        return   
 
     def extractCreditCardNum(self, text:str) -> datetime:
             date_obj = None
