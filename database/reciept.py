@@ -10,7 +10,7 @@ cursor_obj.execute("DROP TABLE IF EXISTS Reciept")
 
 # SQL query to create the table
 table_creation_query = """
-    CREATE TABLE IF NOT EXISTS Reciept (
+    CREATE TABLE Reciept (
         Reciept_Id INTEGER PRIMARY KEY,
         User_Id INTEGER,
         User_Name CHAR(25),

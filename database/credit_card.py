@@ -10,7 +10,7 @@ cursor_obj.execute("DROP TABLE IF EXISTS Credit_Card")
 
 # SQL query to create the table
 table_creation_query = """
-    CREATE TABLE IF NOT EXISTS Credit_Card (
+    CREATE TABLE Credit_Card (
         Credit_Card_Number INTEGER PRIMARY KEY,
         User_Id INTEGER,
         User_Name CHAR(25)
