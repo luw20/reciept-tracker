@@ -6,16 +6,16 @@ connection_obj = sqlite3.connect('reciepts.db')
 # Create a cursor object to interact with the database
 cursor_obj = connection_obj.cursor()
 
-# Drop the RECIEPT table if it already exists (for clean setup)
-cursor_obj.execute("DROP TABLE IF EXISTS RECIEPT")
+cursor_obj.execute("DROP TABLE IF EXISTS Reciept")
 
 # SQL query to create the table
 table_creation_query = """
-    CREATE TABLE RECIEPT (
-        Id INTEGER PRIMARY KEY,
+    CREATE TABLE IF NOT EXISTS Reciept (
+        Reciept_Id INTEGER PRIMARY KEY,
+        User_Id INTEGER,
         User_Name CHAR(25),
         Date TEXT,
-        Credit_Card_Number INT
+        Credit_Card_Number INTEGER
     );
 """
 

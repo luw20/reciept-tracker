@@ -4,13 +4,14 @@ import data_extractor
 def main():
     s = scanner.Scanner()
     text = s.getCapturedText()
-    print("Text is " + text)
+    #print("Text is " + text)
     
     d = data_extractor.DataExtractor()
     date = d.extractDate(text)
 
     if date:
         print(date)
+        #insert date into database
 
     else:
         print("Could not capture date")
