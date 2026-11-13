@@ -1,6 +1,6 @@
 import pytest
 import datetime
-import reciepttracker.reciept_tracker.data_extractor as data_extractor
+import receipt_tracker.data_extractor as data_extractor
 from unittest.mock import patch
 
 @pytest.fixture

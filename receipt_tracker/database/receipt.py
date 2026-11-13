@@ -1,19 +1,21 @@
 import sqlite3
 
 # Connect to the SQLite database (or create it if it doesn't exist)
-connection_obj = sqlite3.connect('reciepts.db')
+connection_obj = sqlite3.connect('receipts.db')
 
 # Create a cursor object to interact with the database
 cursor_obj = connection_obj.cursor()
 
-cursor_obj.execute("DROP TABLE IF EXISTS Credit_Card")
+cursor_obj.execute("DROP TABLE IF EXISTS Receipt")
 
 # SQL query to create the table
 table_creation_query = """
-    CREATE TABLE Credit_Card (
-        Credit_Card_Number INTEGER PRIMARY KEY,
+    CREATE TABLE Receipt (
+        Receipt_Id INTEGER PRIMARY KEY,
         User_Id INTEGER,
-        User_Name CHAR(25)
+        User_Name CHAR(25),
+        Date TEXT,
+        Credit_Card_Number INTEGER
     );
 """
 
